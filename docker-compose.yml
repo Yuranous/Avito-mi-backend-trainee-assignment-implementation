@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+    depends_on:
+      - db
+    ports:
+      - 8127:8127
+    environment:
+      MONGO_HOST: "172.17.0.1"
+  db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+    - 27017:27017
